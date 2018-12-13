@@ -34,67 +34,47 @@ app.delete('/users/:id', (req, res) => {
     queries.deleteUser(req.params.id).then(res.sendStatus(204))
 })
 
-
-
-//u
-// //SHOW ROUTE
-// app.get('/:id', function (req, res) {
-//     queries.getById(req.params.id).then(response => res.send(response))
-// })
-// //SHOW ROUTE
-// app.get('/:id', function (req, res) {
-//     queries.getById(req.params.id).then(response => res.send(response))
-// })
-
-// //POST ROUTE
-// app.post('/', (req, res) => {
-//     queries.createMovie(req.body).then(item => res.send(item))
-// })
-// //POST ROUTE
-// app.post('/', (req, res) => {
-//     queries.createMovie(req.body).then(item => res.send(item))
-// })
-// //POST ROUTE
-// app.post('/', (req, res) => {
-//     queries.createMovie(req.body).then(item => res.send(item))
+//Accounts section
+app.get('/accounts', function (req, res) {
+    queries.getAllAccounts(req.params.id).then(response => res.send(response))
+})
+//SHOW ROUTE
+// app.get('/accounts/:id', function (req, res) {
+//     queries.getAccountById(req.params.id).then(response => res.send(response))
 // })
 // //UPDATE ROUTE
 // app.put('/:id', (req, res) => {
-//     queries.updateMovie(req.params.id, req.body).then(data => res.json(data[0]))
+//     queries.updateAccounts(req.params.id, req.body).then(data => res.json(data[0]))
+// })
+// //POST ROUTE
+// app.post('/accounts', (req, res) => {
+//     queries.createAccount(req.body).then(item => res.send(item))
+// })
+// // //DELETE ALL ROUTE
+// app.delete('/accounts/:id', (req, res) => {
+//     queries.deleteUser(req.params.id).then(res.sendStatus(204))
 // })
 
+//Transactions section
+app.get('/transactions', function (req, res) {
+    queries.getAllTransactions().then(response => res.send(response))
+})
+// app.get('/transactions/:id', function (req, res) {
+//     queries.getTransactionsById(req.params.id).then(response => res.send(response))
+// })
 // //UPDATE ROUTE
-// app.put('/:id', (req, res) => {
-//     queries.updateMovie(req.params.id, req.body).then(data => res.json(data[0]))
+// app.put('/transactions/:id', (req, res) => {
+//     queries.updateTransaction(req.params.id, req.body).then(data => res.json(data[0]))
 // })
-// //DELETE BY ID ROUTE
-// app.delete('/:id', (req, res) => {
-//     queries.deleteMovie(req.params.id).then(res.sendStatus(204))
+// //POST ROUTE
+// app.post('/transactions', (req, res) => {
+//     queries.createTransactions(req.body).then(item => res.send(item))
 // })
-// //DELETE BY ID ROUTE
-// app.delete('/:id', (req, res) => {
-//     queries.deleteMovie(req.params.id).then(res.sendStatus(204))
-// })
-// //DELETE BY ID ROUTE
-// app.delete('/:id', (req, res) => {
-//     queries.deleteMovie(req.params.id).then(res.sendStatus(204))
-// })
-// //DELETE ALL ROUTE
-// app.delete('/', (req, res) => {
-//     queries.deleteAll().then(res.sendStatus(204))
-// })
-// //DELETE ALL ROUTE
-// app.delete('/', (req, res) => {
-//     queries.deleteAll().then(res.sendStatus(204))
+// // //DELETE ALL ROUTE
+// app.delete('/transactions/:id', (req, res) => {
+//     queries.deleteTransactions(req.params.id).then(res.sendStatus(204))
 // })
 
-// //ERROR ROUTE
-
-// app.get('*', function (req, res) {
-//     res.send('Page Not Found: 404')
-// })
-
-//HOSTING
 
 app.listen(port, function () {
     console.log('Serving on port 3001.')
