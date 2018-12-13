@@ -5,7 +5,7 @@ module.exports = {
         return db('users');
     },
     getUserById(id) {
-        return db('users').select('users.email', 'users.first_name', 'users.last_name', 'users.id', 'accounts.acct_name', 'accounts.acct_type', 'accounts.total')
+        return db('users').select('users.email', 'users.first_name', 'users.last_name', 'users.id as user_id', 'accounts.acct_name', 'accounts.id as acct_id', 'accounts.acct_type', 'accounts.total')
             .join('accounts', 'users.id', 'accounts.user_id')
             .where('users.id', id)
     },
