@@ -21,6 +21,11 @@ module.exports = {
     },
     getAllTransactions() {
         return db('transactions');
+    },
+    getAccountsByUser(id) {
+        return db('users')
+            .join('accounts', 'users.id', 'accounts.user_id')
+            .select()
     }
 }
 // {
