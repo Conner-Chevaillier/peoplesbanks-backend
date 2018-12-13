@@ -15,6 +15,12 @@ module.exports = {
     },
     deleteUser(id) {
         return db('users').where('id', id).delete();
+    },
+    getAllAccounts() {
+        return db('accounts');
+    },
+    getAllTransactions() {
+        return db('transactions');
     }
 }
 // {
