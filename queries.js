@@ -5,7 +5,9 @@ module.exports = {
         return db('users');
     },
     getUserById(id) {
-        return db('users').where('id', id);
+        return db('users').select('users.email', 'users.first_name', 'users.last_name', 'users.id', 'accounts.acct_name', 'accounts.acct_type', 'accounts.total')
+            .join('accounts', 'users.id', 'accounts.user_id')
+            .where('users.id', id)
     },
     createUser(newUser) {
         return db('users').insert(newUser).returning('*');
@@ -19,8 +21,14 @@ module.exports = {
     getAllAccounts() {
         return db('accounts');
     },
-    getAllTransactions() {
-        return db('transactions');
+    getTransactionsByAccount(accountId) {
+        return db('accounts')
+            .select('transactions.title', 'transactions.amount', 'transactions.status')
+            .join('transactions', 'transactions.account_id', 'accounts.id')
+            .where('accounts.id', accountId);
+    },
+    getAccountsByUser(id) {
+        return db('users')
     }
 }
 // {

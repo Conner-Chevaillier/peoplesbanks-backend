@@ -4,7 +4,7 @@ exports.up = function (knex, Promise) {
         transaction.string('title');
         transaction.boolean('status');
         transaction.integer('amount');
-        transaction.integer('account_id');
+        transaction.integer('account_id').references('id').inTable('accounts').onDelete('cascade');
     })
 };
 
