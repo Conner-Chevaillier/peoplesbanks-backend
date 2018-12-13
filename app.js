@@ -10,15 +10,33 @@ app.use(bodyParser.json())
 
 
 //INDEX ROUTE
-app.get('/', function (req, res) {
+app.get('/users', function (req, res) {
     queries.listAllUsers().then(users => res.send(users))
     // queries.getAll().then(response => res.send(response))
 })
 
 // //SHOW ROUTE
-// app.get('/:id', function (req, res) {
-//     queries.getById(req.params.id).then(response => res.send(response))
-// })
+app.get('/users/:id', function (req, res) {
+    queries.getUserById(req.params.id).then(response => res.send(response))
+})
+
+//Create User Route
+app.post('/users', function (req, res) {
+    queries.createUser(req.body).then(response => res.send(response))
+})
+// //UPDATE ROUTE
+app.put('/users/:id', (req, res) => {
+    queries.updateUser(req.params.id, req.body).then(data => res.json(data[0]))
+})
+
+// //DELETE ALL ROUTE
+app.delete('/users/:id', (req, res) => {
+    queries.deleteUser(req.params.id).then(res.sendStatus(204))
+})
+
+
+
+//u
 // //SHOW ROUTE
 // app.get('/:id', function (req, res) {
 //     queries.getById(req.params.id).then(response => res.send(response))
@@ -44,14 +62,11 @@ app.get('/', function (req, res) {
 // app.put('/:id', (req, res) => {
 //     queries.updateMovie(req.params.id, req.body).then(data => res.json(data[0]))
 // })
+
 // //UPDATE ROUTE
 // app.put('/:id', (req, res) => {
 //     queries.updateMovie(req.params.id, req.body).then(data => res.json(data[0]))
 // })
-// //UPDATE ROUTE
-// app.put('/:id', (req, res) => {
-//     queries.updateMovie(req.params.id, req.body).then(data => res.json(data[0]))
-// })
 // //DELETE BY ID ROUTE
 // app.delete('/:id', (req, res) => {
 //     queries.deleteMovie(req.params.id).then(res.sendStatus(204))
@@ -72,10 +87,7 @@ app.get('/', function (req, res) {
 // app.delete('/', (req, res) => {
 //     queries.deleteAll().then(res.sendStatus(204))
 // })
-// //DELETE ALL ROUTE
-// app.delete('/', (req, res) => {
-//     queries.deleteAll().then(res.sendStatus(204))
-// })
+
 // //ERROR ROUTE
 
 // app.get('*', function (req, res) {
